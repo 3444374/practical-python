@@ -16,6 +16,8 @@ while principal > 0:
         payment = 2684.11 + extra_payment
     else: payment = 2684.11
 
+    if principal * (1+rate/12) < payment:
+        payment = principal * (1+rate/12)
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
     i = i + 1
