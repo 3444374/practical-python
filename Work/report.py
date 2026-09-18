@@ -8,7 +8,7 @@ def read_portfolio(filename):
         header = next(f)
         for line in f:
             row = line.split(',')
-            temp = (row[0], int(row[1]), float(row[2]))
+            temp = {'name' : row[0], 'shares' : int(row[1]), 'price' : float(row[2])}
             portfolio.append(temp)
 
     return portfolio
