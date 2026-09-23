@@ -27,8 +27,30 @@ def read_prices(filename):
 
     return prices
 
+def make_report(portfolio, prices):
+    '''
+    Generate a report as a list of tuples (name, shares, price, change)
+    '''
+    report = []
+    for stock in portfolio:
+        name = stock['name']
+        shares = stock['shares']
+        current_price = prices[name]
+        change = current_price - stock['price']
+        report.append((name, shares, current_price, change))
+
+    return report
+
+
 if __name__ == '__main__':
     portfolio = read_portfolio('./Data/portfolio.csv')
     prices = read_prices('./Data/prices.csv')
+    report = make_report(portfolio, prices)
     # print(portfolio)
     # print(prices)
+    headers = ('Name', 'Shares', 'Price', 'Change')
+    seperator = '----------'
+    print('%10s %10s %10s %10s' % headers)
+    print('%10s %10s %10s %10s' % (seperator, seperator, seperator, seperator))
+    for r in report:
+        print('%10s %10d %10.2f %10.2f' % r)
